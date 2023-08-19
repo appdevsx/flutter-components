@@ -68,7 +68,7 @@ class OtpVerificationMobileScreenLayout extends StatelessWidget {
       child: Column(
         children: [
           const TitleSubTitleWidget(
-            title: Strings.verificationCode,
+            title: Strings.pleaseEnterTheCode,
             subTitle: Strings.enterTheOtpVerification,
             isCenterText: true,
           ),

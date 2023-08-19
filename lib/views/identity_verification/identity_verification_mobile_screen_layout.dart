@@ -86,7 +86,7 @@ class IdentityVerificationMobileScreenLayout extends StatelessWidget {
         top: Dimensions.marginSizeVertical * 2,
       ),
       child: Obx(
-        () => controller.isLoading
+        () => controller.isSubmitLoading
             ? const CustomLoadingAPI()
             : PrimaryButton(
                 title: Strings.submit,

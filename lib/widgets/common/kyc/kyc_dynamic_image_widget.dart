@@ -1,14 +1,10 @@
 import 'dart:io';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
+import 'package:adChange/utils/basic_screen_imports.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 import '../../../controller/identity_verification/identity_verification_controller.dart';
-import '../../../custom_assets/assets.gen.dart';
-import '../../../utils/custom_color.dart';
-import '../../../utils/dimensions.dart';
-import '../others/custom_image_widget.dart';
+import '../image_picker_sheet.dart';
 
 File? imageFile;
 
@@ -59,43 +55,52 @@ class _DropFileState extends State<UpdateKycImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: imageFile == null
-          ? Theme.of(context).primaryColor.withOpacity(0.3)
-          : CustomColor.primaryLightScaffoldBackgroundColor,
-      child: DottedBorder(
-        dashPattern: const [4, 2],
-        strokeWidth: 2,
-        color: Theme.of(context).primaryColor.withOpacity(0.2),
+    return InkWell(
+      onTap: () {
+        _showImagePickerBottomSheet(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: RDottedLineBorder.all(
+            color: CustomColor.blackColor.withOpacity(0.2),
+          ),
+          borderRadius: BorderRadius.circular(Dimensions.radius),
+        ),
         child: Container(
           height: Dimensions.heightSize * 7,
           alignment: Alignment.center,
-          margin: EdgeInsets.symmetric(
-            horizontal: Dimensions.marginSizeHorizontal * 0.2,
-            vertical: Dimensions.marginSizeVertical * 0.2,
+          margin: EdgeInsets.all(
+            Dimensions.marginSizeHorizontal * 0.25,
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimensions.radius),
-            image: DecorationImage(
-              fit: BoxFit.contain,
-              image: controller.getImagePath(widget.fieldName) == null
-                  ? AssetImage(Assets.clipart.idcardBack.path) as ImageProvider
-                  : FileImage(
+          decoration: controller.getImagePath(widget.fieldName) == null
+              ? BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
+                  borderRadius: BorderRadius.circular(Dimensions.radius),
+                )
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: FileImage(
                       File(
                         controller.getImagePath(widget.fieldName) ?? '',
                       ),
                     ),
-            ),
-          ),
-          child: GestureDetector(
-            onTap: () {
-              openImageSourceOptions(
-                context,
-              );
-            },
-            child: CustomImageWidget(
-              path: Assets.icon.camera,
-              height: Dimensions.heightSize * 1.4,
+                  ),
+                ),
+          child: Opacity(
+            opacity: 0.3,
+            child: Column(
+              mainAxisAlignment: mainCenter,
+              children: const [
+                Icon(
+                  Icons.cloud_upload_outlined,
+                ),
+                TitleHeading4Widget(
+                  text: Strings.uploadDocument,
+                  fontWeight: FontWeight.w400,
+                )
+              ],
             ),
           ),
         ),
@@ -103,84 +108,23 @@ class _DropFileState extends State<UpdateKycImageWidget> {
     );
   }
 
-  openImageSourceOptions(
-    BuildContext context,
-  ) {
-    showGeneralDialog(
-        barrierLabel:
-            MaterialLocalizations.of(context).modalBarrierDismissLabel,
-        barrierDismissible: true,
-        barrierColor: Colors.black.withOpacity(0.6),
-        transitionDuration: const Duration(milliseconds: 700),
-        context: context,
-        pageBuilder: (_, __, ___) {
-          return Material(
-            type: MaterialType.transparency,
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                height: Dimensions.heightSize * 13,
-                width: Dimensions.widthSize * 25,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(Dimensions.radius)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          child: const Icon(
-                            Icons.camera_alt,
-                            size: 40.0,
-                            color: Colors.blue,
-                          ),
-                          onTap: () {
-                            pickImage(ImageSource.camera);
-                          },
-                        ),
-                        Text(
-                          'from Camera',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: Dimensions.headingTextSize4),
-                        )
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          child: const Icon(
-                            Icons.photo,
-                            size: 40.0,
-                            color: Colors.green,
-                          ),
-                          onTap: () {
-                            pickImage(ImageSource.gallery);
-                          },
-                        ),
-                        Text(
-                          'From Gallery',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: Dimensions.headingTextSize4),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-        transitionBuilder: (_, anim, __, child) {
-          return SlideTransition(
-            position: Tween(begin: const Offset(0, 1), end: const Offset(0, 0))
-                .animate(anim),
-            child: child,
-          );
-        });
+  _showImagePickerBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          width: double.infinity,
+          child: ImagePickerSheet(
+            fromCamera: () {
+              pickImage(ImageSource.camera);
+            },
+            fromGallery: () {
+              pickImage(ImageSource.gallery);
+            },
+          ),
+        );
+      },
+    );
   }
 }

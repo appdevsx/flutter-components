@@ -7,7 +7,8 @@ class SignUpMobileScreenLayout extends StatelessWidget {
   }) : super(key: key);
 
   final SignUpController controller;
-  final navigationController = Get.put(NavigationController());
+  final basicSettingsController = Get.put(BasicSettingsController());
+
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class SignUpMobileScreenLayout extends StatelessWidget {
 
   _welcomeTextWidget(BuildContext context) {
     return TitleHeading4Widget(
-      text: Strings.welcomeToChange,
+      text: Strings.welcomeSignUp,
       fontWeight: FontWeight.w500,
       color: Get.isDarkMode
           ? CustomColor.primaryDarkTextColor.withOpacity(.60)
@@ -171,7 +172,13 @@ class SignUpMobileScreenLayout extends StatelessWidget {
                         ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      navigationController.onPrivacyAndPolicy;
+                      Get.to(
+                        () => WebViewScreen(
+                          title: Strings.privacyPolicy,
+                          url: basicSettingsController
+                              .appSettingsModel.data.webLinks.privacyPolicy,
+                        ),
+                      );
                     },
                 )
               ],

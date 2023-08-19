@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'backend/utils/network_check/dependency_injection.dart';
-import 'bindings/initial_bindings.dart';
 import 'language/english.dart';
 
 void main() async {
@@ -48,7 +47,6 @@ class MyApp extends StatelessWidget {
         navigatorKey: Get.key,
         initialRoute: Routes.splashScreen,
         getPages: Routes.list,
-        initialBinding: InitialScreenBindings(tag: ''),
         builder: (context, widget) {
           ScreenUtil.init(context);
           return MediaQuery(

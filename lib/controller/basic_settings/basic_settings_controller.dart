@@ -13,6 +13,9 @@ class BasicSettingsController extends GetxController {
   RxString onBoardTitle = ''.obs;
   RxString onBoardSubTitle = ''.obs;
   RxString appBasicLogo = ''.obs;
+  RxString privacyPolicy = ''.obs;
+  RxString contactUs = ''.obs;
+  RxString aboutUs = ''.obs;
 
   @override
   void onInit() {
@@ -55,5 +58,8 @@ class BasicSettingsController extends GetxController {
     onBoardSubTitle.value = onBoardData.subTitle;
     appBasicLogo.value =
         "${ApiEndpoint.mainDomain}/${_appSettingsModel.data.logoImagePath}/${_appSettingsModel.data.allLogo.siteLogo}";
+    privacyPolicy.value = _appSettingsModel.data.webLinks.privacyPolicy;
+    contactUs.value = _appSettingsModel.data.webLinks.contactUs;
+    aboutUs.value = _appSettingsModel.data.webLinks.aboutUs;
   }
 }

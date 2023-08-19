@@ -21,7 +21,7 @@ class Strings {
   static const String newPassword = 'New Password';
   static const String confirmPassword = 'Confirm Password';
   static const String enter = 'Enter';
-  static const String resetPassword = 'Reset Password';
+  static const String resetPassword = 'Reset Your Password';
   static const String congratulation = 'Congratulations';
   static const String createAccount = 'Create Account';
   static const String firstName = 'First Name';
@@ -155,7 +155,9 @@ class Strings {
   static const String close = 'Close';
 
   static const String welcomeToChange =
-      'Welcome to Change Ads, sign in to your registered account. Or if you don\'t have an account then create your account now to earn by trading currency.';
+      'Our secure sign in process ensures the confidentiality of your information. Sign in today and stay connected to your finances, anytime and anywhere.';
+  static const String welcomeSignUp =
+      'Become a part of our community by registering for an account today. Enjoy a range of benefits and features tailored to meet your needs.';
 
   static const String onboardScreen = 'Onboard Screen';
   static const String enterEmailAddress = 'Enter Email Address';
@@ -181,7 +183,7 @@ class Strings {
   static const String yourIdentityDocument =
       'Your identity document has been successfully sent to the admin. Wait for approval.';
   static const String pleaseEnterYour =
-      'Please enter your registered email address for reset your password.';
+      'Take control of your account by resetting your password. Our password recovery page guides you through the necessary steps.';
   static const String enterConfirmPassword = 'Enter Confirm Password';
   static const String enterNewPassword = 'Enter New Password';
 
@@ -231,11 +233,11 @@ class Strings {
   static const validThru = 'VALID THRU';
   static const String previewOne = 'Preview One';
   static const String twoFactorAuthorization = 'Two Factor Authorization';
-  static const String verificationCode = 'Verification Code';
+  static const String pleaseEnterTheCode = 'Please Enter The Code';
   static const String proveYourAddress =
       'Prove your address through legal documents of your place of residence.';
   static const String enterTheOtpVerification =
-      'Enter the otp verification code. Which one did we send to your registered email to reset your password';
+      'We sent a 6-digit code to your email';
 
   static const String enterTheTwoFaVerification =
       'Please enter your authorization code to access dashboard';

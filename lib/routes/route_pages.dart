@@ -34,9 +34,9 @@ class RoutePageList {
 
     /// Navigation
     GetPage(
-      name: Routes.navigationScreen,
-      page: () => NavigationScreen(),
-    ),
+        name: Routes.navigationScreen,
+        page: () => NavigationScreen(),
+        binding: InitialScreenBindings()),
     GetPage(
       name: Routes.profileScreen,
       page: () => ProfileScreen(),

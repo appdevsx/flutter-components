@@ -1,5 +1,6 @@
 import 'package:adChange/views/auth/sign_in/sign_in_screen.dart';
 import 'package:get/get.dart';
+import '../bindings/initial_bindings.dart';
 import '../bindings/splash_screen_binding.dart';
 import '../views/add_money/add_money_manual_payment_screen.dart';
 import '../views/add_money/add_money_preview_screen.dart';

@@ -1,5 +1,4 @@
 import 'package:adChange/backend/local_storage/local_storage.dart';
-import 'package:adChange/backend/services/api_endpoint.dart';
 import 'package:adChange/extensions/custom_extensions.dart';
 import 'package:adChange/utils/basic_widget_imports.dart';
 import 'package:adChange/views/marketplace/marketplace_screen.dart';
@@ -12,12 +11,11 @@ import '../../routes/routes.dart';
 import '../../views/home/home_screen.dart';
 import '../../views/my_section/my_section_screen.dart';
 import '../../views/web_view/web_view_screen.dart';
+import '../basic_settings/basic_settings_controller.dart';
 
 class NavigationController extends GetxController {
   final RxInt selectedIndex = 0.obs;
-  final aboutUs = '${ApiEndpoint.mainDomain}/about-us';
-  final helpCenter = '${ApiEndpoint.mainDomain}/contact-us';
-  final privacyAndPolicy = '${ApiEndpoint.mainDomain}/page/privacy-policy';
+  final basicSettingsController = Get.put(BasicSettingsController());
 
   final List page = [
     HomeScreen(),
@@ -39,19 +37,19 @@ class NavigationController extends GetxController {
   get onHelpCenter => Get.to(
         () => WebViewScreen(
           title: Strings.helpCenter,
-          url: helpCenter,
+          url: basicSettingsController.contactUs.value,
         ),
       );
   get onAboutUs => Get.to(
         () => WebViewScreen(
           title: Strings.aboutUs,
-          url: aboutUs,
+          url: basicSettingsController.aboutUs.value,
         ),
       );
   get onPrivacyAndPolicy => Get.to(
         () => WebViewScreen(
           title: Strings.privacyAndPolicy,
-          url: privacyAndPolicy,
+          url: basicSettingsController.privacyPolicy.value,
         ),
       );
 
