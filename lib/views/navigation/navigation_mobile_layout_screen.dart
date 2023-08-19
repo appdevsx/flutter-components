@@ -263,7 +263,8 @@ class NavigationMobileScreenLayout extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.back();
+                            // Get.back();
+                            Get.close(1);
                           },
                           child: CustomImageWidget(path: Assets.icon.back),
                         ),
@@ -377,7 +378,7 @@ class NavigationMobileScreenLayout extends StatelessWidget {
                   height: Dimensions.buttonHeight * 0.6,
                   title: Strings.search,
                   onPressed: () {
-                    Get.back();
+                    Get.close(1);
                     marketplaceController.isFilter.value = true;
                     marketplaceController.marketplaceInfoGetProcessApi();
                   },

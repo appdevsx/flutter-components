@@ -7,6 +7,7 @@ class AdCreateSuccessMobileScreenLayout extends StatelessWidget {
 
   final AdCreateSuccessController controller;
   final GlobalKey previewContainer = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     Future<bool> onWillPop() async {
@@ -69,9 +70,10 @@ class AdCreateSuccessMobileScreenLayout extends StatelessWidget {
               child: CustomImageWidget(path: Assets.icon.copy),
               onTap: () async {
                 await Clipboard.setData(
-                    ClipboardData(text: controller.url.value));
-
-                CustomSnackBar.success(Strings.copyQrUrl);
+                        ClipboardData(text: controller.url.value))
+                    .then((value) {
+                  CustomSnackBar.success(Strings.copyQrUrl);
+                });
               },
             ),
           )

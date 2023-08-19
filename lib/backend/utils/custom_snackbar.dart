@@ -22,7 +22,7 @@ class CustomSnackBar {
       mainButton: TextButton(
         onPressed: () {
           // Get.back();
-          Get.close(1);
+          // Get.close(0);
         },
         child: const Text(
           "Dismiss",

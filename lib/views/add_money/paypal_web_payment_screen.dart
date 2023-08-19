@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:adChange/controller/add_money/add_money_controller.dart';
 import 'package:adChange/extensions/custom_extensions.dart';
 import 'package:adChange/utils/basic_screen_imports.dart';
+import 'package:adChange/views/congratulation/congratulation_screen.dart';
 import 'package:adChange/widgets/common/others/custom_image_widget.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -12,6 +15,9 @@ class PaypalWebPaymentScreen extends StatelessWidget {
   PaypalWebPaymentScreen({super.key});
 
   final controller = Get.put(AddMoneyController());
+
+  late InAppWebViewController webViewController;
+  final ValueNotifier<bool> isLoading = ValueNotifier<bool>(true);
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +65,44 @@ class PaypalWebPaymentScreen extends StatelessWidget {
         paymentUrl = data[i].href;
       }
     }
-    return InAppWebView(
-      initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
-      onWebViewCreated: (InAppWebViewController controller) {},
-      onProgressChanged: (InAppWebViewController controller, int progress) {},
+    return Stack(
+      children: [
+        InAppWebView(
+          initialUrlRequest: URLRequest(url: Uri.parse(paymentUrl)),
+          onWebViewCreated: (controller) {
+            webViewController = controller;
+            controller.addJavaScriptHandler(
+              handlerName: 'jsHandler',
+              callback: (args) {
+                // Handle JavaScript messages from WebView
+              },
+            );
+          },
+          onLoadStart: (controller, url) {
+            isLoading.value = true;
+          },
+          onLoadStop: (controller, url) {
+            isLoading.value = false;
+            if (url.toString().contains('success/response')) {
+              Get.to(
+                () => const CongratulationScreen(
+                  title: Strings.congratulation,
+                  subTitle: "",
+                  route: "",
+                ),
+              );
+            }
+          },
+        ),
+        ValueListenableBuilder<bool>(
+          valueListenable: isLoading,
+          builder: (context, isLoading, _) {
+            return isLoading
+                ? const Center(child: CustomLoadingAPI())
+                : const SizedBox.shrink();
+          },
+        ),
+      ],
     );
   }
 }
