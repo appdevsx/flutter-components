@@ -32,21 +32,23 @@ class MarketplaceMobileScreenLayout extends StatelessWidget {
       child: AnimationLimiter(
         child: controller.marketplaceInfoModel.data.trads.data.isEmpty
             ? Center(
-                child: InkWell(
-                  onTap: () {
-                    controller.marketplaceInfoGetProcessApi();
-                  },
-                  child: Column(
-                    mainAxisAlignment: mainCenter,
-                    children: [
-                      const TitleHeading3Widget(text: Strings.noTradeFound),
-                      verticalSpace(Dimensions.heightSize),
-                      Icon(
+                child: Column(
+                  mainAxisAlignment: mainCenter,
+                  children: [
+                    const TitleHeading3Widget(text: Strings.noTradeFound),
+                    verticalSpace(Dimensions.heightSize),
+                    InkWell(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onTap: () {
+                        controller.marketplaceInfoGetProcessApi();
+                      },
+                      child: Icon(
                         Icons.replay_outlined,
                         color: CustomColor.blackColor,
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],
                 ),
               )
             : ListView(

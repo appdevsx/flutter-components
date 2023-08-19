@@ -21,7 +21,7 @@ class CustomSnackBar {
       borderRadius: 5.0,
       mainButton: TextButton(
         onPressed: () {
-          // Get.back();
+          Get.back();
           // Get.close(0);
         },
         child: const Text(
@@ -51,8 +51,8 @@ class CustomSnackBar {
         borderRadius: 5.0,
         mainButton: TextButton(
           onPressed: () {
-            // Get.back();
-            Get.close(1);
+            Get.back();
+            // Get.close(1);
           },
           child: const Text(
             "Dismiss",

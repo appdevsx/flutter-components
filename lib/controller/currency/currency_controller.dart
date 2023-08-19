@@ -46,7 +46,7 @@ class CurrencyController extends GetxController {
 
       if (_currencyModel.data.wallet.flag != "") {
         flagImagePath.value =
-            "${_currencyModel.data.baseUrl}/${_currencyModel.data.imagePath}/ ${_currencyModel.data.wallet.flag}";
+            "${_currencyModel.data.baseUrl}/${_currencyModel.data.imagePath}/${_currencyModel.data.wallet.flag}";
       } else {
         flagImagePath.value =
             "${_currencyModel.data.baseUrl}/${_currencyModel.data.defaultImage}";

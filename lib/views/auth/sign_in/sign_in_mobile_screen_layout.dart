@@ -168,9 +168,18 @@ class SignIndMobileScreenLayout extends StatelessWidget {
                 ),
               ),
               horizontalSpace(Dimensions.widthSize * 0.4),
-              const TitleHeading5Widget(
-                text: Strings.rememberMe,
-                fontWeight: FontWeight.w500,
+              InkWell(
+                onTap: () {
+                  if (controller.isRemember.value) {
+                    controller.isRemember.value = false;
+                  } else {
+                    controller.isRemember.value = true;
+                  }
+                },
+                child: const TitleHeading5Widget(
+                  text: Strings.rememberMe,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),

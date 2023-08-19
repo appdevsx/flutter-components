@@ -185,18 +185,28 @@ class AddMoneyMobileScreenLayout extends StatelessWidget {
           color: Theme.of(context).primaryColor,
           fontWeight: FontWeight.w500,
         ),
+        verticalSpace(Dimensions.heightSize * 0.2),
+        TitleHeading5Widget(
+          text:
+              "${Strings.exchangeRate}: ${"1"} ${controller.baseCurrency.value} = ${controller.exchangeRate.value} ${controller.currencyCode.value} ",
+          color: Theme.of(context).primaryColor,
+          fontWeight: FontWeight.w500,
+        ),
         Container(
-          margin: EdgeInsets.only(top: Dimensions.marginSizeVertical * 2.5),
+          margin: EdgeInsets.only(top: Dimensions.marginSizeVertical * 1.8),
           height: Dimensions.inputBoxHeight * 0.6,
           child: CustomDropDown<Currency>(
             items: controller.allCurrencyList,
             hint: controller.selectWallet.value,
             onChanged: (value) {
+              dynamic rateValue = 1.0;
               controller.selectWallet.value = value!.title;
               controller.selectAlias.value = value.alias;
               controller.selectedCurrencyType.value = value.type;
               controller.selectRate.value = value.rate;
               controller.limitMin.value = value.minLimit / value.rate;
+              controller.exchangeRate.value =
+                  (rateValue / value.rate).toStringAsFixed(2);
               controller.limitMax.value = value.maxLimit / value.rate;
               controller.currencyCode.value = value.currencyCode;
               debugPrint(

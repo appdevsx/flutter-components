@@ -29,19 +29,20 @@ class NetworkController extends GetxController {
 
     if (connectivityResult == ConnectivityResult.none) {
       Get.rawSnackbar(
-          messageText: const Text('PLEASE CONNECT TO THE INTERNET',
-              style: TextStyle(color: Colors.white, fontSize: 14)),
-          isDismissible: false,
-          duration: const Duration(days: 1),
-          backgroundColor: Colors.red[400]!,
-          icon: const Icon(
-            Icons.wifi_off,
-            color: Colors.white,
-            size: 35,
-          ),
-          margin: EdgeInsets.zero,
-          snackStyle: SnackStyle.GROUNDED,
-          snackPosition: SnackPosition.BOTTOM);
+        messageText: const Text('PLEASE CONNECT TO THE INTERNET',
+            style: TextStyle(color: Colors.white, fontSize: 14)),
+        isDismissible: false,
+        duration: const Duration(days: 1),
+        backgroundColor: Colors.red[400]!,
+        icon: const Icon(
+          Icons.wifi_off,
+          color: Colors.white,
+          size: 35,
+        ),
+        margin: EdgeInsets.zero,
+        snackStyle: SnackStyle.GROUNDED,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     } else {
       if (Get.isSnackbarOpen) {
         Get.closeCurrentSnackbar();

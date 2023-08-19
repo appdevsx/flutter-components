@@ -3,7 +3,7 @@ import 'package:adChange/extensions/custom_extensions.dart';
 class ApiEndpoint {
   static const String mainDomain = "https://sohag.appdevs.net/adchange-web";
   static const String baseUrl = "$mainDomain/api/v1";
-
+//https://script.appdevsx.com/adchange/
   //-> Login
   static String loginURL = '/user/login'.addBaseURl();
 

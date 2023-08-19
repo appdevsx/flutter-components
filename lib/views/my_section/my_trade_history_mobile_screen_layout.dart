@@ -27,22 +27,27 @@ class MyTradeHistoryMobileScreenLayout extends StatelessWidget {
       onRefresh: () async {
         controller.getTradeInfoProcess();
       },
-      child: AnimationLimiter(
-        child: ListView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-          children: List.generate(
-            controller.myTradeInfoModel.data.myTrade.length,
-            (index) => CustomListViewAnimation(
-              index: index,
-              child: MyTradeHistoryWidget(
-                myTrade: controller.myTradeInfoModel.data.myTrade[index],
+      child: controller.myTradeInfoModel.data.myTrade.isEmpty
+          ? const Center(
+              child: TitleHeading3Widget(text: Strings.noTradeFound),
+            )
+          : AnimationLimiter(
+              child: ListView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
+                children: List.generate(
+                  controller.myTradeInfoModel.data.myTrade.length,
+                  (index) => CustomListViewAnimation(
+                    index: index,
+                    child: MyTradeHistoryWidget(
+                      myTrade: controller.myTradeInfoModel.data.myTrade[index],
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
-      ).paddingSymmetric(horizontal: Dimensions.marginSizeHorizontal * 0.8),
+            ).paddingSymmetric(
+              horizontal: Dimensions.marginSizeHorizontal * 0.8),
     );
   }
 }

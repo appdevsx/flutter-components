@@ -154,11 +154,6 @@ class MyWalletCurrencyWidget extends StatelessWidget {
               spreadRadius: 0,
             )
           ],
-          image: DecorationImage(
-            image: NetworkImage(
-              controller.controller.baseCurrencyFlag.value,
-            ),
-          ),
         ),
         child: CircleAvatar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,

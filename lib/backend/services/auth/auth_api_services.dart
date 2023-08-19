@@ -22,7 +22,7 @@ class AuthApiServices {
       );
       if (mapResponse != null) {
         SignInModel result = SignInModel.fromJson(mapResponse);
-        CustomSnackBar.success(result.message.success.first.toString());
+        // CustomSnackBar.success(result.message.success.first.toString());
         return result;
       }
     } catch (e) {

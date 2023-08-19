@@ -90,6 +90,7 @@ class Strings {
   static const String yourDetails = 'Your Details';
   static const String clientName = 'Client Name';
   static const String addNew = 'Add New';
+  static const String and = '& ';
   static const String itemName = 'Item Name';
   static const String voucher = 'Voucher';
   static const String redeem = 'Redeem';
@@ -257,8 +258,10 @@ class Strings {
       'Prove your identity by submitting your valid government certificate.';
   static const String makeAnOffer = 'Make an Offer';
   static const String okay = 'Okay';
-  static const String iAgreedWith =
-      'I have agreed with Terms Of Use & Privacy Policy';
+  static const String iAgreedWith = 'I have agreed with';
+
+  static const String terms = ' Terms Of Use ';
+  static const String privacyPolicy = 'Privacy Policy';
 
   static const String selectPaymentGateway = 'Select Payment Gateway';
   static const String approval = 'Approval';

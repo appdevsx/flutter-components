@@ -68,6 +68,7 @@ class AddMoneyController extends GetxController {
   RxString selectedCurrencyType = "".obs;
   RxString selectedGatewaySlug = "".obs;
   RxString currencyCode = "".obs;
+  RxString exchangeRate = "".obs;
   RxString currencyWalletCode = "".obs;
   RxString gatewayTrx = "".obs;
   RxInt selectedCurrencyId = 0.obs;
@@ -233,6 +234,10 @@ class AddMoneyController extends GetxController {
               .toStringAsFixed(2);
       walletCurrency.value = _addMoneyInfoModel.data.userWallet.currency;
       walletCurrencySubTitle.value = _addMoneyInfoModel.data.userWallet.name;
+
+      /// get exchange rate added
+      dynamic rateValue = 1.0;
+      exchangeRate.value = (rateValue / currency.rate).toStringAsFixed(2);
     }
     if (_addMoneyInfoModel.data.userWallet.flag != '') {
       baseCurrencyFlag.value =

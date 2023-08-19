@@ -87,8 +87,8 @@ class PaypalWebPaymentScreen extends StatelessWidget {
               Get.to(
                 () => const CongratulationScreen(
                   title: Strings.congratulation,
-                  subTitle: "",
-                  route: "",
+                  subTitle: Strings.yourMoneyHasBeen,
+                  route: Routes.navigationScreen,
                 ),
               );
             }

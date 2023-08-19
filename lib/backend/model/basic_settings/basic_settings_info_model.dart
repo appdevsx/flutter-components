@@ -33,6 +33,7 @@ class Data {
   String imagePath;
   List<OnboardScreen> onboardScreen;
   SplashScreen splashScreen;
+  WebLinks webLinks;
   AllLogo allLogo;
 
   Data({
@@ -41,6 +42,7 @@ class Data {
     required this.imagePath,
     required this.onboardScreen,
     required this.splashScreen,
+    required this.webLinks,
     required this.allLogo,
   });
 
@@ -51,6 +53,7 @@ class Data {
         onboardScreen: List<OnboardScreen>.from(
             json["onboard_screen"].map((x) => OnboardScreen.fromJson(x))),
         splashScreen: SplashScreen.fromJson(json["splash_screen"]),
+        webLinks: WebLinks.fromJson(json["web_links"]),
         allLogo: AllLogo.fromJson(json["all_logo"]),
       );
 
@@ -61,6 +64,7 @@ class Data {
         "onboard_screen":
             List<dynamic>.from(onboardScreen.map((x) => x.toJson())),
         "splash_screen": splashScreen.toJson(),
+        "web_links": webLinks.toJson(),
         "all_logo": allLogo.toJson(),
       };
 }
@@ -90,6 +94,30 @@ class AllLogo {
         "site_logo": siteLogo,
         "site_fav_dark": siteFavDark,
         "site_fav": siteFav,
+      };
+}
+
+class WebLinks {
+  String privacyPolicy;
+  String aboutUs;
+  String contactUs;
+
+  WebLinks({
+    required this.privacyPolicy,
+    required this.aboutUs,
+    required this.contactUs,
+  });
+
+  factory WebLinks.fromJson(Map<String, dynamic> json) => WebLinks(
+        privacyPolicy: json["privacy-policy"],
+        aboutUs: json["about-us"],
+        contactUs: json["contact-us"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "privacy-policy": privacyPolicy,
+        "about-us": aboutUs,
+        "contact-us": contactUs,
       };
 }
 

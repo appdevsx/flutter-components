@@ -7,6 +7,7 @@ class SignUpMobileScreenLayout extends StatelessWidget {
   }) : super(key: key);
 
   final SignUpController controller;
+  final navigationController = Get.put(NavigationController());
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -124,9 +125,57 @@ class SignUpMobileScreenLayout extends StatelessWidget {
             ),
           ),
           horizontalSpace(Dimensions.widthSize * 0.4),
-          const TitleHeading5Widget(
-            text: Strings.iAgreedWith,
-            fontWeight: FontWeight.w500,
+          RichText(
+            text: TextSpan(
+              text: Strings.iAgreedWith,
+              style: Get.isDarkMode
+                  ? CustomStyle.darkHeading5TextStyle
+                  : CustomStyle.lightHeading5TextStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  if (controller.agreed.value) {
+                    controller.agreed.value = false;
+                  } else {
+                    controller.agreed.value = true;
+                  }
+                },
+              children: [
+                TextSpan(
+                  text: Strings.terms,
+                  style: Get.isDarkMode
+                      ? CustomStyle.darkHeading5TextStyle
+                      : CustomStyle.lightHeading5TextStyle,
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      if (controller.agreed.value) {
+                        controller.agreed.value = false;
+                      } else {
+                        controller.agreed.value = true;
+                      }
+                    },
+                ),
+                TextSpan(
+                  text: Strings.and,
+                  style: Get.isDarkMode
+                      ? CustomStyle.darkHeading5TextStyle
+                      : CustomStyle.lightHeading5TextStyle,
+                ),
+                TextSpan(
+                  text: Strings.privacyPolicy,
+                  style: Get.isDarkMode
+                      ? CustomStyle.darkHeading5TextStyle.copyWith(
+                          color: Theme.of(context).primaryColor,
+                        )
+                      : CustomStyle.lightHeading5TextStyle.copyWith(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      navigationController.onPrivacyAndPolicy;
+                    },
+                )
+              ],
+            ),
           ),
         ],
       ),
