@@ -47,5 +47,17 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+    <<!-- image picker package dependencies -->>
+	
+   <string>This app needs access to your photo library so you can upload photo.</string>
+   <key>NSCameraUsageDescription</key>
+   <string>This app needs access to your camera so you can take photos.</string>
+   <key>NSAppTransportSecurity</key>
+   
+   <key>io.flutter.embedded_views_preview</key>
+   <<!-- for webview -->>
+   <string>YES</string>
 </dict>
 </plist>
