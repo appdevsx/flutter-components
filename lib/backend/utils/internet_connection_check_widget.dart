@@ -16,7 +16,7 @@ class CheckInternetConnectionWidget extends StatelessWidget {
         final state = snapshot.data!;
         switch (state) {
           case ConnectivityResult.none:
-            return Center(child: const Text('Not connected'));
+            return const Center(child: Text('Not connected'));
           default:
             return widget;
         }

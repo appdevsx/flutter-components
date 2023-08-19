@@ -40,7 +40,8 @@ class NetworkController extends GetxController {
             size: 35,
           ),
           margin: EdgeInsets.zero,
-          snackStyle: SnackStyle.GROUNDED);
+          snackStyle: SnackStyle.GROUNDED,
+          snackPosition: SnackPosition.BOTTOM);
     } else {
       if (Get.isSnackbarOpen) {
         Get.closeCurrentSnackbar();

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import '../local_storage/local_storage.dart';
 import '../model/common/error_message_model.dart';

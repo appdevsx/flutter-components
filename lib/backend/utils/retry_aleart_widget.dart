@@ -10,19 +10,19 @@ class RetryAlertWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Success"),
+      title: const Text("Success"),
       titleTextStyle:
-      TextStyle(
+      const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.black,fontSize: 20),
       actionsOverflowButtonSpacing: 20,
       actions: [
         ElevatedButton(onPressed: (){
           Get.back();
-        }, child: Text("Back")),
-        ElevatedButton(onPressed: onPressed, child: Text("Next")),
+        }, child: const Text("Back")),
+        ElevatedButton(onPressed: onPressed, child: const Text("Next")),
       ],
-      content: Text("Saved successfully"),
+      content: const Text("Saved successfully"),
     );
   }
 }

@@ -40,7 +40,8 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? leading ??
               BackButtonWidget(
                 onTap: () {
-                  Get.back();
+                  // Get.back();
+                  Get.close(1);
                 },
               )
           : null,

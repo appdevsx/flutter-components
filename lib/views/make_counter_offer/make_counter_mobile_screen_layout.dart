@@ -21,7 +21,8 @@ class MakeCounterOfferMobileScreenLayout extends StatelessWidget {
     return AppBar(
       leading: BackButtonWidget(
         onTap: () {
-          Get.back();
+          // Get.back();
+          Get.close(1);
         },
       ),
       title: Row(

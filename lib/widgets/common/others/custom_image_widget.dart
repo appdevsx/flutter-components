@@ -34,7 +34,7 @@ class CustomImageWidget extends StatelessWidget {
     final extension = getFileExtension(path);
     return extension == '.svg'
         ? ClipRRect(
-            borderRadius: borderRadius,
+            borderRadius: borderRadius ?? BorderRadius.zero,
             child: SvgPicture.asset(
               path,
               height: height,
@@ -44,7 +44,7 @@ class CustomImageWidget extends StatelessWidget {
             ),
           )
         : ClipRRect(
-            borderRadius: borderRadius,
+            borderRadius: borderRadius ?? BorderRadius.zero,
             child: Image.asset(
               path,
               scale: scale,

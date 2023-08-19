@@ -84,7 +84,8 @@ class DrawerScreen extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            Get.back();
+            // Get.back();
+            Get.close(1);
           },
           child: Icon(
             Icons.arrow_back,

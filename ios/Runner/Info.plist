@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Appdevs App Ui Template</string>
+	<string>AdChange</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -47,17 +47,22 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-
-	<key>NSPhotoLibraryUsageDescription</key>
-    <<!-- image picker package dependencies -->>
-	
+    <key>NSPhotoLibraryUsageDescription</key>
    <string>This app needs access to your photo library so you can upload photo.</string>
    <key>NSCameraUsageDescription</key>
    <string>This app needs access to your camera so you can take photos.</string>
+
    <key>NSAppTransportSecurity</key>
-   
+   <dict>
+       <key>NSAllowsArbitraryLoads</key>
+       <true/>
+   </dict>
+
    <key>io.flutter.embedded_views_preview</key>
-   <<!-- for webview -->>
    <string>YES</string>
+
+   <key>NSFaceIDUsageDescription</key>
+   <string>We use Touch ID to securely authenticate you into the app.</string>
+
 </dict>
 </plist>

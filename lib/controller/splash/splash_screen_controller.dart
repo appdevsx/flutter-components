@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:adChange/backend/local_storage/local_storage.dart';
-import 'package:get/get.dart';
 import 'package:uni_links/uni_links.dart';
 
 import '../../routes/routes.dart';
