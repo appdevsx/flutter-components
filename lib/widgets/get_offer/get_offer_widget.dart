@@ -179,6 +179,14 @@ class GetOfferWidget extends StatelessWidget {
                               _customButtonWidget(
                                 title: Strings.pay,
                                 onTap: () {
+                                  /// >>> get seller information
+                                  offerBuyController.sellerName.value =
+                                      getOffer.creatorName;
+                                  offerBuyController.isVerified.value =
+                                      (getOffer.emailVerified == 1 &&
+                                              getOffer.kycVerified == 1)
+                                          ? true
+                                          : false;
                                   offerBuyController.offerBuyProcessApi(
                                     getOffer.id.toString(),
                                   );

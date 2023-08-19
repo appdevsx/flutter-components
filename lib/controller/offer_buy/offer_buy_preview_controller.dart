@@ -177,6 +177,7 @@ class OfferBuyPreviewController extends GetxController {
     sellerWillPay.value = "${tradeData.amount} ${tradeData.saleCurrency.code}";
 
     targetId.value = _offerBuyModel.data.target;
+    // sellerName.value = _offerBuyModel.data.//TODO
 
     /// >> route buying preview screen
     Routes.offerBuyPreviewScreen.toNamed;
