@@ -82,22 +82,7 @@ class GetOfferWidget extends StatelessWidget {
                             ),
                           ),
                           horizontalSpace(Dimensions.widthSize * 0.5),
-                          // Expanded(
-                          //   child: Container(
-                          //     padding:
-                          //         EdgeInsets.all(Dimensions.paddingSize * 0.11),
-                          //     decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(
-                          //           Dimensions.radius * 0.5),
-                          //       color: CustomColor.orangeColor.withOpacity(0.2),
-                          //     ),
-                          //     child: TitleHeading5Widget(
-                          //       text: Strings.counterOffer,
-                          //       fontSize: Dimensions.headingTextSize6,
-                          //       color: CustomColor.orangeColor,
-                          //     ),
-                          //   ),
-                          // )
+                         
                         ],
                       ),
                       FittedBox(

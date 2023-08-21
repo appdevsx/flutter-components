@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
@@ -145,6 +143,8 @@ class MyTradeHistoryWidget extends StatelessWidget {
       case 'Rejected':
         return _customStatusWidget(color: CustomColor.redColor);
       case 'Complete':
+        return _customStatusWidget(color: CustomColor.greenColor);
+      case 'Success':
         return _customStatusWidget(color: CustomColor.greenColor);
       case 'Close Request':
         return _customStatusWidget(color: CustomColor.redColor);
