@@ -271,7 +271,7 @@ class LocalStorage {
   }
 
   static String getNumber() {
-    return GetStorage().read(numKey) ?? ''; //TODO 
+    return GetStorage().read(numKey) ?? 'no number added';
   }
 
   static String? getToken() {

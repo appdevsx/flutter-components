@@ -82,7 +82,6 @@ class GetOfferWidget extends StatelessWidget {
                             ),
                           ),
                           horizontalSpace(Dimensions.widthSize * 0.5),
-                         
                         ],
                       ),
                       FittedBox(
@@ -294,8 +293,8 @@ class GetOfferWidget extends StatelessWidget {
     /// >>> get is counter offer
     if (getOffer.tradeStatus == 1) {
       if (getOffer.receiverId == LocalStorage.getId() &&
-          getOffer.status != '4' &&
-          getOffer.status != '1') {
+          getOffer.status != 4 &&
+          getOffer.status != 1) {
         counterOfferController.isCounterOffer.value = true;
       } else {
         counterOfferController.isCounterOffer.value = false;
