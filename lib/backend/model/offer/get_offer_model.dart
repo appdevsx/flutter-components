@@ -62,7 +62,7 @@ class GetOffer {
   int forUserId;
   int receiverId;
   int tradeId;
-  String status;
+  int status;
   DateTime offerCreated;
   dynamic creatorImage;
   int emailVerified;

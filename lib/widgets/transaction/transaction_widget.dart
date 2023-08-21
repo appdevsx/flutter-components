@@ -104,6 +104,8 @@ class TransactionWidget extends StatelessWidget {
         return _customStatusWidget(color: CustomColor.redColor);
       case 'Complete':
         return _customStatusWidget(color: CustomColor.greenColor);
+      case 'Success':
+        return _customStatusWidget(color: CustomColor.greenColor);
       case 'Close Request':
         return _customStatusWidget(color: CustomColor.redColor);
       case 'Closed':

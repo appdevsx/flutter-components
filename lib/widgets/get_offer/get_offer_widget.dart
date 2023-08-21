@@ -164,12 +164,12 @@ class GetOfferWidget extends StatelessWidget {
                       if (getOffer.tradeStatus == 1) ...[
                         if (getOffer.receiverId == LocalStorage.getId() ||
                             getOffer.receiverId != LocalStorage.getId()) ...[
-                          if (getOffer.status == '4') ...[
+                          if (getOffer.status == 4) ...[
                             _customButtonWidget(
                               title: Strings.rejected,
                               onTap: () {},
                             )
-                          ] else if (getOffer.status == '1') ...[
+                          ] else if (getOffer.status == 1) ...[
                             if (getOffer.forUserId == LocalStorage.getId()) ...[
                               _customButtonWidget(
                                 title: Strings.accepted,
@@ -200,8 +200,8 @@ class GetOfferWidget extends StatelessWidget {
                       /// get sold button &  accept , reject ,counter offer
                       if (getOffer.tradeStatus == 1) ...[
                         if (getOffer.receiverId == LocalStorage.getId() &&
-                            getOffer.status != '4' &&
-                            getOffer.status != '1') ...[
+                            getOffer.status != 4 &&
+                            getOffer.status != 1) ...[
                           Obx(
                             () => counterOfferController.loadingIndex.value ==
                                         index &&
@@ -237,19 +237,14 @@ class GetOfferWidget extends StatelessWidget {
 
   statusInfo() {
     switch (getOffer.status) {
-      case 'Ongoing':
+      case 2:
         return _customStatusWidget(color: CustomColor.orangeColor);
-      case 'Pending':
-        return _customStatusWidget(color: CustomColor.orangeColor);
-      case 'Rejected':
-        return _customStatusWidget(color: CustomColor.redColor);
-      case 'Success':
+
+      case 1:
         return _customStatusWidget(color: CustomColor.greenColor);
-      case 'Close Request':
+      case 3:
         return _customStatusWidget(color: CustomColor.redColor);
-      case 'Closed':
-        return _customStatusWidget(color: CustomColor.redColor);
-      default:
+      case 4:
         return _customStatusWidget(color: CustomColor.redColor);
     }
   }
@@ -263,7 +258,13 @@ class GetOfferWidget extends StatelessWidget {
         color: color.withOpacity(0.2),
       ),
       child: TitleHeading5Widget(
-        text: getOffer.status,
+        text: getOffer.status == 1
+            ? "Accept"
+            : getOffer.status == 2
+                ? "Pending"
+                : getOffer.status == 3
+                    ? "Sold"
+                    : "Rejected",
         fontSize: Dimensions.headingTextSize6,
         color: color,
       ),

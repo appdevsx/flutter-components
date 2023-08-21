@@ -69,6 +69,7 @@ class SignInController extends GetxController {
     } else if (_signInModel.data.user.emailVerified == 0) {
       debugPrint("----------------EMAIL NOT VERIFIED");
       LocalStorage.saveToken(token: signInModel.data.token);
+      LocalStorage.saveId(id: signInModel.data.user.id);
       Get.toNamed(Routes.emailVerificationScreen);
     }
   }
