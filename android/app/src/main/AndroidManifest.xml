@@ -40,7 +40,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="sohag.appdevs.net"
+                    android:host="envato.appdevs.net"
                     android:scheme="https" />
             </intent-filter>
             <!-- Deep Links -->
@@ -51,7 +51,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="sohag.appdevs.net"
+                    android:host="envato.appdevs.net"
                     android:scheme="myapp" />
             </intent-filter>
         </activity>

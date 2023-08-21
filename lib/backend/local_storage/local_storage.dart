@@ -324,6 +324,8 @@ class LocalStorage {
     await box.remove(isLoggedInKey);
 
     await box.remove(isOnBoardDoneKey);
+
+    await box.remove(tokenKey);
   }
 
   static Future<void> removeDeepLinkValue() async {

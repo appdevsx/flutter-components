@@ -1,9 +1,8 @@
 import 'package:adChange/extensions/custom_extensions.dart';
 
 class ApiEndpoint {
-  static const String mainDomain = "https://sohag.appdevs.net/adchange-web";
-  static const String scriptDomain = "https://script.appdevsx.com/adchange";
-  static const String baseUrl = "$scriptDomain/api/v1";
+  static const String mainDomain = "https://envato.appdevs.net/adchange";
+  static const String baseUrl = "$mainDomain/api/v1";
 
   //-> Login
   static String loginURL = '/user/login'.addBaseURl();
