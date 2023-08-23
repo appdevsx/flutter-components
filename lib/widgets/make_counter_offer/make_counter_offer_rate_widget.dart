@@ -130,26 +130,28 @@ class MakeCounterOfferRateWidget extends StatelessWidget {
           )
         ],
       ),
-      child: Row(
-        mainAxisAlignment: mainCenter,
-        children: [
-          AmountWidget(
-            amount: controller.sellAmount.value.toStringAsFixed(2),
-            currency: controller.sellCurrency.value,
-            isPrimaryColor: true,
-          ),
-          CustomImageWidget(
-            path: Assets.icon.replyTeal,
-            color: Get.isDarkMode
-                ? CustomColor.whiteColor
-                : CustomColor.blackColor,
-          ).paddingSymmetric(horizontal: Dimensions.marginSizeHorizontal * 0.2),
-          AmountWidget(
-            amount: controller.rateAmount.value.toStringAsFixed(2),
-            currency: controller.rateCurrency.value,
-            isPrimaryColor: true,
-          ),
-        ],
+      child: FittedBox(
+        child: Row(
+          mainAxisAlignment: mainCenter,
+          children: [
+            AmountWidget(
+              amount: controller.sellAmount.value.toStringAsFixed(2),
+              currency: controller.sellCurrency.value,
+              isPrimaryColor: true,
+            ),
+            CustomImageWidget(
+              path: Assets.icon.replyTeal,
+              color: Get.isDarkMode
+                  ? CustomColor.whiteColor
+                  : CustomColor.blackColor,
+            ).paddingSymmetric(horizontal: Dimensions.marginSizeHorizontal * 0.2),
+            AmountWidget(
+              amount: controller.rateAmount.value.toStringAsFixed(2),
+              currency: controller.rateCurrency.value,
+              isPrimaryColor: true,
+            ),
+          ],
+        ),
       ),
     );
   }

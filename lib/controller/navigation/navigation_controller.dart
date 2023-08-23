@@ -40,12 +40,14 @@ class NavigationController extends GetxController {
           url: basicSettingsController.contactUs.value,
         ),
       );
+
   get onAboutUs => Get.to(
         () => WebViewScreen(
           title: Strings.aboutUs,
           url: basicSettingsController.aboutUs.value,
         ),
       );
+      
   get onPrivacyAndPolicy => Get.to(
         () => WebViewScreen(
           title: Strings.privacyAndPolicy,

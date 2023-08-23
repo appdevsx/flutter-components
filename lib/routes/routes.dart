@@ -47,45 +47,16 @@ class Routes {
 
   // Route Names
   static const String splashScreen = '/splashScreen';
-  static const String exampleScreen = '/exampleScreen';
   static const String onboardScreen = '/onboard_screen';
   static const String signInScreen = '/sign_in_screen';
   static const String twoFaOtpVerificationScreen =
       '/twoFaOtpVerificationScreen';
-  static const String signInDataEntryScreen = '/sign_in_data_entry_screen';
   static const String otpVerificationScreen = '/otp_verification_screen';
   static const String resetPasswordScreen = '/reset_password_screen';
-  static const String confirmationOneScreen = '/confirmation_one_screen';
   static const String signUpScreen = '/sign_up_screen';
   static const String emailVerificationScreen = '/email_verification_screen';
   static const String confirmationScreen = '/confirmation_screen';
-  static const String identityVerificationOneScreen =
-      '/identity_verification_one_screen';
-  static const String approvalOneScreen = '/approval_one_screen';
-  static const String approvalTwoScreen = '/approval_two_screen';
-  static const String dashboardPage = '/dashboard_page';
-  static const String dashboardContainerScreen = '/dashboard_container_screen';
-  static const String sortMarketplaceScreen = '/sort_marketplace_screen';
-  static const String buyingPreviewTwoScreen = '/buying_preview_two_screen';
-  static const String buyingPreviewOneScreen = '/buying_preview_one_screen';
-  static const String approvalScreen = '/approval_screen';
-  static const String myAdchangeOnePage = '/my_adchange_one_page';
-
-  static const String notificationsPage = '/notifications_page';
-  static const String buyingPreviewScreen = '/buying_preview_screen';
   static const String profileScreen = '/profile_screen';
-  static const String previewOneScreen = '/preview_one_screen';
-  static const String confirmScreen = '/confirm_screen';
-  static const String previewScreen = '/preview_screen';
-  static const String confirmOneScreen = '/confirm_one_screen';
-  static const String myAdchangeScreen = '/my_adchange_screen';
-  static const String drawerMenuScreen = '/drawer_menu_screen';
-  static const String transactionsScreen = '/transactions_screen';
-
-  static const String faVerificationScreen = '/fa_verification_screen';
-
-  /// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
   static const String navigationScreen = '/navigationScreen';
   static const String marketplaceBuyingPreviewScreen =
       '/marketplaceBuyingPreviewScreen';

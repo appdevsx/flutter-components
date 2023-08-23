@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:adChange/backend/utils/custom_loading_api.dart';
 import 'package:adChange/custom_assets/assets.gen.dart';
 import 'package:flutter/gestures.dart';
-
 import '../../../backend/local_storage/local_storage.dart';
 import '../../../controller/auth/sign_in/sign_in_controller.dart';
 import '../../../controller/biometric/biometric_controller.dart';

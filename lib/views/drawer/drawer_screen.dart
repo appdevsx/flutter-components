@@ -48,7 +48,10 @@ class DrawerScreen extends StatelessWidget {
     return Column(
       children: [
         Animate(
-            effects: const [FadeEffect(), ScaleEffect()],
+            effects: const [
+              FadeEffect(),
+              ScaleEffect(),
+            ],
             child: ImagePickerWidget(
               isPicker: false,
               imageUrl: profileController.userImage.value,

@@ -219,41 +219,41 @@ class GetOfferWidget extends StatelessWidget {
     );
   }
 
-  statusInfo() {
-    switch (getOffer.status) {
-      case 2:
-        return _customStatusWidget(color: CustomColor.orangeColor);
+  // statusInfo() {
+  //   switch (getOffer.status) {
+  //     case 2:
+  //       return _customStatusWidget(color: CustomColor.orangeColor);
 
-      case 1:
-        return _customStatusWidget(color: CustomColor.greenColor);
-      case 3:
-        return _customStatusWidget(color: CustomColor.redColor);
-      case 4:
-        return _customStatusWidget(color: CustomColor.redColor);
-    }
-  }
+  //     case 1:
+  //       return _customStatusWidget(color: CustomColor.greenColor);
+  //     case 3:
+  //       return _customStatusWidget(color: CustomColor.redColor);
+  //     case 4:
+  //       return _customStatusWidget(color: CustomColor.redColor);
+  //   }
+  // }
 
-  _customStatusWidget({required Color color}) {
-    return Container(
-      margin: EdgeInsets.only(left: Dimensions.widthSize * 0.4),
-      padding: EdgeInsets.all(Dimensions.paddingSize * 0.11),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimensions.radius * 0.5),
-        color: color.withOpacity(0.2),
-      ),
-      child: TitleHeading5Widget(
-        text: getOffer.status == 1
-            ? "Accept"
-            : getOffer.status == 2
-                ? "Pending"
-                : getOffer.status == 3
-                    ? "Sold"
-                    : "Rejected",
-        fontSize: Dimensions.headingTextSize6,
-        color: color,
-      ),
-    );
-  }
+  // _customStatusWidget({required Color color}) {
+  //   return Container(
+  //     margin: EdgeInsets.only(left: Dimensions.widthSize * 0.4),
+  //     padding: EdgeInsets.all(Dimensions.paddingSize * 0.11),
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(Dimensions.radius * 0.5),
+  //       color: color.withOpacity(0.2),
+  //     ),
+  //     child: TitleHeading5Widget(
+  //       text: getOffer.status == 1
+  //           ? Strings.accept
+  //           : getOffer.status == 2
+  //               ? Strings.pending
+  //               : getOffer.status == 3
+  //                   ? Strings.sold
+  //                   : Strings.rejected,
+  //       fontSize: Dimensions.headingTextSize6,
+  //       color: color,
+  //     ),
+  //   );
+  // }
 
   _customButtonWidget({
     required String title,

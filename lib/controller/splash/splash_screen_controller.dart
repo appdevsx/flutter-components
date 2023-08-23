@@ -43,7 +43,7 @@ class SplashController extends GetxController {
       handleDeepLink(initialUri);
     }
 
-    // Use Uri? in the function parameter
+   // Use Uri? in the function parameter
     uriLinkStream.listen((Uri? uri) {
       if (uri != null) {
         handleDeepLink(uri);
