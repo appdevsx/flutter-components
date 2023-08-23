@@ -352,6 +352,8 @@ class HomeMobileScreenLayout extends StatelessWidget {
             horizontal: Dimensions.marginSizeHorizontal,
           ),
           child: InkWell(
+            splashColor:Colors.transparent ,
+            highlightColor: Colors.transparent,
             onTap: () {
               Routes.getOfferScreen.toNamed;
             },
@@ -392,7 +394,7 @@ class HomeMobileScreenLayout extends StatelessWidget {
             ),
           ),
           child: SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.3,
+            height: MediaQuery.sizeOf(context).height * 0.23,
             child: AnimationLimiter(
               child: getOfferController.getOfferModel.data.getOffers.isNotEmpty
                   ? ListView(
