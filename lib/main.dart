@@ -15,11 +15,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarBrightness: Brightness.dark,
-    ),
-  );
+
   InternetCheckDependencyInjection.init();
 
   /// >>> initializing getStorage
