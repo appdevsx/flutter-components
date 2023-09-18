@@ -2,6 +2,7 @@ import 'package:adChange/backend/services/auth/auth_api_services.dart';
 import 'package:adChange/utils/basic_screen_imports.dart';
 
 import '../../../backend/model/common/common_success_model.dart';
+import '../../../backend/services/api_services.dart';
 import '../../../backend/utils/api_method.dart';
 import '../../../routes/routes.dart';
 import '../../../views/congratulation/congratulation_screen.dart';
@@ -39,7 +40,7 @@ class ResetPasswordController extends GetxController {
       'password_confirmation': confirmPasswordController.text
     };
 
-    await AuthApiServices.resetPasswordApi(body: inputBody).then((value) {
+    await  ApiServices().resetPasswordApi(body: inputBody).then((value) {
       _resetPasswordModel = value!;
 
       goToSignInScreen();

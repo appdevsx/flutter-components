@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 part of '../sign_in/sign_in_screen.dart';
 
 class SignIndMobileScreenLayout extends StatelessWidget {
@@ -6,7 +8,7 @@ class SignIndMobileScreenLayout extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final SignInController controller;
+  final AuthController controller;
   final formKey = GlobalKey<FormState>();
   final forgotPasswordFormKey = GlobalKey<FormState>();
   final biometric = Get.put(BiometricController());
@@ -48,44 +50,41 @@ class SignIndMobileScreenLayout extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         vertical: Dimensions.marginSizeVertical,
       ),
-      child: Obx(
-        () => controller.isLoading
-            ? const CustomLoadingAPI()
-            : Column(
-                children: [
-                  PrimaryButton(
-                    title: Strings.signIn,
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        controller.onSignIn;
-                      }
-                    },
-                  ),
-                  verticalSpace(Dimensions.marginBetweenInputTitleAndBox * 2),
-                  Visibility(
-                    visible: biometric.supportState == SupportState.supported &&
-                        LocalStorage.isLoggedIn(),
-                    child: PrimaryButton(
-                      title: Strings.signInWithTouchId,
-                      onPressed: () async {
-                        bool isAuthenticated =
-                            await Authentication.authenticateWithBiometrics();
+      child: Column(
+        children: [
+          PrimaryButton(
+            title: Strings.signIn,
+            isLoading: controller.isLoading,
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                controller.onSignIn;
+              }
+            },
+          ),
+          verticalSpace(Dimensions.marginBetweenInputTitleAndBox * 2),
+          Visibility(
+            visible: biometric.supportState == SupportState.supported &&
+                LocalStorage.isLoggedIn(),
+            child: PrimaryButton(
+              title: Strings.signInWithTouchId,
+              onPressed: () async {
+                bool isAuthenticated =
+                    await Authentication.authenticateWithBiometrics();
 
-                        if (isAuthenticated) {
-                          Get.offAndToNamed(Routes.navigationScreen);
-                        } else {
-                          debugPrint('isAuthenticated : false');
-                        }
-                      },
-                      buttonTextColor: Theme.of(context).primaryColor,
-                      buttonColor: Colors.transparent,
-                      elevation: 0,
-                      borderColor: Theme.of(context).primaryColor,
-                      borderWidth: 1.5,
-                    ),
-                  ),
-                ],
-              ),
+                if (isAuthenticated) {
+                  Get.offAndToNamed(Routes.navigationScreen);
+                } else {
+                  debugPrint('isAuthenticated : false');
+                }
+              },
+              buttonTextColor: Theme.of(context).primaryColor,
+              buttonColor: Colors.transparent,
+              elevation: 0,
+              borderColor: Theme.of(context).primaryColor,
+              borderWidth: 1.5,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -254,8 +253,7 @@ class SignIndMobileScreenLayout extends StatelessWidget {
                       ),
                       verticalSpace(Dimensions.marginSizeVertical),
                       PrimaryInputWidget(
-                        controller:
-                            controller.forgotPasswordEmailAddressController,
+                        controller: controller.forgotPasswordEmailController,
                         hintText: Strings.enterEmailAddress,
                         label: Strings.emailAddress,
                         prefixIconPath: Assets.icon.clock,
@@ -263,23 +261,17 @@ class SignIndMobileScreenLayout extends StatelessWidget {
                         textInputType: TextInputType.emailAddress,
                       ),
                       verticalSpace(Dimensions.marginBetweenInputBox),
-                      Obx(
-                        () => controller.isForgotPasswordLoading
-                            ? const CustomLoadingAPI()
-                            : PrimaryButton(
-                                title:
-                                    Strings.forgotPassword.replaceAll('?', ''),
-                                onPressed: () {
-                                  if (forgotPasswordFormKey.currentState!
-                                      .validate()) {
-                                    LocalStorage.saveEmail(
-                                        email: controller
-                                            .forgotPasswordEmailAddressController
-                                            .text);
-                                    controller.onForgotPassword;
-                                  }
-                                },
-                              ),
+                      PrimaryButton(
+                        isLoading: controller.isForgotPasswordLoading,
+                        title: Strings.forgotPassword.replaceAll('?', ''),
+                        onPressed: () {
+                          if (forgotPasswordFormKey.currentState!.validate()) {
+                            LocalStorage.saveEmail(
+                                email: controller
+                                    .forgotPasswordEmailController.text);
+                            controller.onForgotPassword;
+                          }
+                        },
                       ),
                     ],
                   ),

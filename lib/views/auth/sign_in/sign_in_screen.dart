@@ -19,7 +19,7 @@ part '../sign_in/sign_in_mobile_screen_layout.dart';
 class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
 
-  final controller = Get.put(SignInController());
+  final controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {

@@ -6,6 +6,7 @@ import 'package:adChange/utils/basic_screen_imports.dart';
 import 'package:adChange/extensions/custom_extensions.dart';
 
 import '../../../backend/local_storage/local_storage.dart';
+import '../../../backend/services/api_services.dart';
 import '../../../backend/utils/api_method.dart';
 
 class SignUpController extends GetxController {
@@ -39,7 +40,7 @@ class SignUpController extends GetxController {
       'password': passwordController.text.trim(),
       'policy': 'on',
     };
-    await AuthApiServices.signUpProcessApi(body: inputBody).then((value) {
+    await  ApiServices().signUpProcessApi(body: inputBody).then((value) {
       _signUpModel = value!;
       _goToSavedUser(signUpModel);
       _isLoading.value = false;

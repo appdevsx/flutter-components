@@ -1,6 +1,5 @@
 import 'package:adChange/backend/model/auth/sign_in_model.dart';
 import 'package:adChange/backend/model/common/common_success_model.dart';
-
 import '../../model/auth/forgot_password_model.dart';
 import '../../model/auth/otp_verification_model.dart';
 import '../../model/auth/sign_up_model.dart';
@@ -8,9 +7,9 @@ import '../../utils/api_method.dart';
 import '../../utils/custom_snackbar.dart';
 import '../api_endpoint.dart';
 
-class AuthApiServices {
+mixin AuthApiServices {
   ///* Sign in api services
-  static Future<SignInModel?> signInProcessApi(
+  Future<SignInModel?> signInProcessApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -22,7 +21,7 @@ class AuthApiServices {
       );
       if (mapResponse != null) {
         SignInModel result = SignInModel.fromJson(mapResponse);
-        // CustomSnackBar.success(result.message.success.first.toString());
+        CustomSnackBar.success(result.message.success.first.toString());
         return result;
       }
     } catch (e) {
@@ -34,7 +33,7 @@ class AuthApiServices {
   }
 
   ///* Forgot Password Process Api
-  static Future<ForgotPasswordModel?> forgotPasswordProcessApi(
+  Future<ForgotPasswordModel?> forgotPasswordProcessApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -59,7 +58,7 @@ class AuthApiServices {
   }
 
   ///* Forgot password otp verify process api
-  static Future<OtpVerificationModel?> forgetPassVerifyOTPApi(
+  Future<OtpVerificationModel?> forgetPassVerifyOTPApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -83,7 +82,7 @@ class AuthApiServices {
   }
 
   ///* Two fa otp verify process api
-  static Future<CommonSuccessModel?> twoFaVerifyOTPApi(
+  Future<CommonSuccessModel?> twoFaVerifyOTPApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -106,7 +105,7 @@ class AuthApiServices {
   }
 
   ///* Reset password process api
-  static Future<CommonSuccessModel?> resetPasswordApi(
+  Future<CommonSuccessModel?> resetPasswordApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -130,7 +129,7 @@ class AuthApiServices {
   }
 
   ///* Change password process api
-  static Future<CommonSuccessModel?> changePasswordApi(
+  Future<CommonSuccessModel?> changePasswordApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -158,7 +157,7 @@ class AuthApiServices {
   ///______________________________  SIGN UP API PROCESS _____________________________
 
   ///* Sign up process api
-  static Future<SignUpModel?> signUpProcessApi(
+  Future<SignUpModel?> signUpProcessApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -180,7 +179,7 @@ class AuthApiServices {
   }
 
   ///* Email otp verify process api
-  static Future<CommonSuccessModel?> emailOtpVerifyApi(
+  Future<CommonSuccessModel?> emailOtpVerifyApi(
       {required Map<String, dynamic> body}) async {
     Map<String, dynamic>? mapResponse;
     try {
@@ -205,7 +204,7 @@ class AuthApiServices {
   }
 
   ///* Email resend otp process api
-  static Future<CommonSuccessModel?> emailResendProcessApi() async {
+  Future<CommonSuccessModel?> emailResendProcessApi() async {
     Map<String, dynamic>? mapResponse;
     try {
       mapResponse = await ApiMethod(isBasic: false).post(
@@ -228,7 +227,7 @@ class AuthApiServices {
   }
 
   ///  Sign out process api
-  static Future<CommonSuccessModel?> signOutProcessApi() async {
+  Future<CommonSuccessModel?> signOutProcessApi() async {
     Map<String, dynamic>? mapResponse;
     try {
       mapResponse =

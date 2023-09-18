@@ -36,7 +36,7 @@ class TwoFaVerificationMobileScreenLayout extends StatelessWidget {
       ),
       child: Obx(
         () => PrimaryButton(
-          isLoading: controller.isLoading,
+          //isLoading: controller.isLoading,
           title: Strings.submit,
           onPressed: () {
             controller.onSubmit;

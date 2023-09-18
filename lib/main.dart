@@ -15,7 +15,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-
+ 
   InternetCheckDependencyInjection.init();
 
   /// >>> initializing getStorage
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         darkTheme: Themes.dark,
         themeMode: Themes().theme,
         navigatorKey: Get.key,
-        initialRoute: Routes.splashScreen,
+        initialRoute: Routes.signInScreen,
         getPages: Routes.list,
         builder: (context, widget) {
           ScreenUtil.init(context);

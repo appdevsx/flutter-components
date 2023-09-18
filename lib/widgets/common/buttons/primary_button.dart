@@ -20,7 +20,7 @@ class PrimaryButton extends StatelessWidget {
     this.flex = 1,
     this.fontWeight,
     this.elevation,
-    this.isLoading = false,
+    this.isLoading,
   }) : super(key: key);
   final String title;
   final VoidCallback onPressed;
@@ -35,7 +35,7 @@ class PrimaryButton extends StatelessWidget {
   final OutlinedBorder? shape;
   final Widget? icon;
   final bool isExpanded;
-  final bool isLoading;
+  final RxBool? isLoading;
   final double? fontSize;
   final FontWeight? fontWeight;
 
@@ -50,39 +50,43 @@ class PrimaryButton extends StatelessWidget {
   }
 
   Widget _buildButton(BuildContext context) {
-    return isLoading
-        ? const CustomLoadingAPI()
-        : SizedBox(
-            height: height ?? Dimensions.buttonHeight * 0.8,
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: onPressed,
-              style: ElevatedButton.styleFrom(
-                elevation: elevation,
-                shape: shape ??
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            radius ?? Dimensions.radius * 0.7)),
-                backgroundColor: buttonColor ?? Theme.of(context).primaryColor,
-                side: BorderSide(
-                  width: borderWidth,
-                  color: borderColor ?? Theme.of(context).primaryColor,
+    bool loadingNull = false;
+    return Obx(
+      () => (isLoading == null ? loadingNull : isLoading!.value)
+          ? const CustomLoadingAPI()
+          : SizedBox(
+              height: height ?? Dimensions.buttonHeight * 0.8,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: onPressed,
+                style: ElevatedButton.styleFrom(
+                  elevation: elevation,
+                  shape: shape ??
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              radius ?? Dimensions.radius * 0.7)),
+                  backgroundColor:
+                      buttonColor ?? Theme.of(context).primaryColor,
+                  side: BorderSide(
+                    width: borderWidth,
+                    color: borderColor ?? Theme.of(context).primaryColor,
+                  ),
                 ),
-              ),
-              child: Text(
-                title.tr,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: CustomStyle.darkHeading3TextStyle.copyWith(
-                  fontSize: fontSize,
-                  fontWeight: fontWeight ?? FontWeight.w600,
-                  color: buttonTextColor ??
-                      (Get.isDarkMode
-                          ? CustomColor.primaryLightTextColor
-                          : CustomColor.primaryDarkTextColor),
+                child: Text(
+                  title.tr,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: CustomStyle.darkHeading3TextStyle.copyWith(
+                    fontSize: fontSize,
+                    fontWeight: fontWeight ?? FontWeight.w600,
+                    color: buttonTextColor ??
+                        (Get.isDarkMode
+                            ? CustomColor.primaryLightTextColor
+                            : CustomColor.primaryDarkTextColor),
+                  ),
                 ),
               ),
             ),
-          );
+    );
   }
 }

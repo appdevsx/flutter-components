@@ -4,6 +4,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../backend/local_storage/local_storage.dart';
 import '../../../backend/model/common/common_success_model.dart';
+import '../../../backend/services/api_services.dart';
 import '../../../backend/utils/api_method.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/basic_screen_imports.dart';
@@ -76,7 +77,7 @@ class EmailVerificationController extends GetxController {
     Map<String, dynamic> inputBody = {
       'otp': currentText.value,
     };
-    await AuthApiServices.emailOtpVerifyApi(body: inputBody).then((value) {
+    await  ApiServices().emailOtpVerifyApi(body: inputBody).then((value) {
       _emailOtpSubmitModel = value!;
 
       if (LocalStorage.getTwoFaID()) {
@@ -103,7 +104,7 @@ class EmailVerificationController extends GetxController {
     pinCodeController.clear();
     update();
 
-    await AuthApiServices.emailResendProcessApi().then((value) {
+    await  ApiServices().emailResendProcessApi().then((value) {
       _emailOtpSubmitModel = value!;
 
       _resendLoading.value = false;

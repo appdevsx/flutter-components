@@ -1,5 +1,4 @@
 import 'package:adChange/backend/model/auth/sign_in_model.dart';
-import 'package:adChange/backend/services/auth/auth_api_services.dart';
 import 'package:adChange/controller/auth/sign_in/otp_verification_controller.dart';
 import 'package:adChange/extensions/custom_extensions.dart';
 import 'package:adChange/routes/routes.dart';
@@ -7,70 +6,88 @@ import 'package:adChange/utils/basic_screen_imports.dart';
 
 import '../../../backend/local_storage/local_storage.dart';
 import '../../../backend/model/auth/forgot_password_model.dart';
-import '../../../backend/utils/api_method.dart';
+import '../../../backend/services/api_services.dart';
 
-class SignInController extends GetxController {
+class AuthState {
+  SignInModel? signInModel;
+  ForgotPasswordModel? forgotPasswordModel;
+  String? errorMessage;
+
+  AuthState({this.signInModel, this.forgotPasswordModel, this.errorMessage});
+}
+
+class AuthController extends GetxController with StateMixin<AuthState> {
+  @override
+  void onInit() {
+    emailAddressController.text = 'user@appdevs.net';
+    passwordController.text = 'appdevs';
+    super.onInit();
+  }
+
+  /// set input field value
   final emailAddressController = TextEditingController();
-  final forgotPasswordEmailAddressController = TextEditingController();
   final passwordController = TextEditingController();
+  final forgotPasswordEmailController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+
+  /// set value for remember password
   RxBool isRemember = false.obs;
 
+  /// set route & others process
   get onSignIn => signInProcess();
   get onForgotPassword => forgotPasswordProcess();
   get onSignUp => Routes.signUpScreen.toNamed;
 
-  /// >> set loading process & Sign In Model
-  final _isLoading = false.obs;
-  late SignInModel _signInModel;
-
-  /// >> get loading process & Sign In Model
-  bool get isLoading => _isLoading.value;
-  SignInModel get signInModel => _signInModel;
+  //! START API Implementation
+  
+  /// set loading process
+  final isLoading = false.obs;
+  final isForgotPasswordLoading = false.obs;
 
   ///* Sign in process
-  Future<SignInModel> signInProcess() async {
-    _isLoading.value = true;
+  Future<void> signInProcess() async {
+    isLoading.value = true;
+    change(null, status: RxStatus.loading());
     update();
     Map<String, dynamic> inputBody = {
       'email': emailAddressController.text,
       'password': passwordController.text,
     };
 
-    await AuthApiServices.signInProcessApi(body: inputBody).then((value) {
-      _signInModel = value!;
+    try {
+      final value = await ApiServices().signInProcessApi(body: inputBody);
+      change(AuthState(signInModel: value), status: RxStatus.success());
       _saveDataLocalStorage();
-      _isLoading.value = false;
+      isLoading.value = false;
       update();
-    }).catchError((onError) {
-      log.e(onError);
-    });
-    _isLoading.value = false;
-    update();
-    return _signInModel;
+    } catch (e) {
+      change(AuthState(errorMessage: e.toString()), status: RxStatus.error());
+    }
   }
 
   _saveDataLocalStorage() {
     LocalStorage.saveIsSmsVerify(
-        value: _signInModel.data.user.smsVerified == 0 ? false : true);
+        value: state!.signInModel!.data.user.smsVerified == 0 ? false : true);
     LocalStorage.saveTwoFaID(
-        id: _signInModel.data.user.twoFactorStatus == 0 ? false : true);
+        id: state!.signInModel!.data.user.twoFactorStatus == 0 ? false : true);
     LocalStorage.saveKyc(
-        id: _signInModel.data.user.kycVerified == 1 ? true : false);
+        id: state!.signInModel!.data.user.kycVerified == 1 ? true : false);
 
-    if (_signInModel.data.user.twoFactorStatus == 1 &&
-        _signInModel.data.user.twoFactorVerified == 0) {
-      LocalStorage.saveToken(token: signInModel.data.token);
-      LocalStorage.saveEmail(email: signInModel.data.user.email);
-      LocalStorage.saveId(id: signInModel.data.user.id);
-      Get.toNamed(Routes.twoFaOtpVerificationScreen);
-    } else if (_signInModel.data.user.emailVerified == 1) {
+    if (state!.signInModel!.data.user.twoFactorStatus == 1 &&
+        state!.signInModel!.data.user.twoFactorVerified == 0) {
+      LocalStorage.saveToken(token: state!.signInModel!.data.token);
+      LocalStorage.saveEmail(email: state!.signInModel!.data.user.email);
+      LocalStorage.saveId(id: state!.signInModel!.data.user.id);
+      //  Get.toNamed(Routes.twoFaOtpVerificationScreen);
+    } else if (state!.signInModel!.data.user.emailVerified == 1) {
       debugPrint("----------------VERIFIED");
-      _goToSavedUser(signInModel);
-    } else if (_signInModel.data.user.emailVerified == 0) {
+      //  _goToSavedUser(signInModel);
+    } else if (state!.signInModel!.data.user.emailVerified == 0) {
       debugPrint("----------------EMAIL NOT VERIFIED");
-      LocalStorage.saveToken(token: signInModel.data.token);
-      LocalStorage.saveId(id: signInModel.data.user.id);
-      Get.toNamed(Routes.emailVerificationScreen);
+      LocalStorage.saveToken(token: state!.signInModel!.data.token);
+      LocalStorage.saveId(id: state!.signInModel!.data.user.id);
+      // Get.toNamed(Routes.emailVerificationScreen);
     }
   }
 
@@ -85,35 +102,25 @@ class SignInController extends GetxController {
     Get.offAllNamed(Routes.navigationScreen);
   }
 
-  /// >> set loading process & Forgot Password Model
-  final _isForgotPasswordLoading = false.obs;
-  late ForgotPasswordModel _forgotPasswordModel;
-
-  /// >> get loading process & Forgot Password Model
-  bool get isForgotPasswordLoading => _isForgotPasswordLoading.value;
-  ForgotPasswordModel get forgotPasswordModel => _forgotPasswordModel;
-
   ///* Forgot Password Api Process
-  Future<ForgotPasswordModel> forgotPasswordProcess() async {
-    _isForgotPasswordLoading.value = true;
+  Future<void> forgotPasswordProcess() async {
+    isForgotPasswordLoading.value = true;
     update();
 
     Map<String, dynamic> inputBody = {
-      'credentials': forgotPasswordEmailAddressController.text.trim(),
+      'credentials': forgotPasswordEmailController.text.trim(),
     };
-    await AuthApiServices.forgotPasswordProcessApi(body: inputBody)
-        .then((value) {
-      _forgotPasswordModel = value!;
-      goToEmailVerification(_forgotPasswordModel.data.user.token);
-      _isForgotPasswordLoading.value = false;
-      update();
-    }).catchError((onError) {
-      log.e(onError);
-    });
 
-    _isForgotPasswordLoading.value = false;
-    update();
-    return _forgotPasswordModel;
+    try {
+      final value =
+          await ApiServices().forgotPasswordProcessApi(body: inputBody);
+      change(AuthState(forgotPasswordModel: value), status: RxStatus.success());
+      goToEmailVerification(state!.forgotPasswordModel!.data.user.token);
+      isForgotPasswordLoading.value = false;
+      update();
+    } catch (e) {
+      change(AuthState(errorMessage: e.toString()), status: RxStatus.error());
+    }
   }
 
   final controller = Get.put(OtpVerificationController());

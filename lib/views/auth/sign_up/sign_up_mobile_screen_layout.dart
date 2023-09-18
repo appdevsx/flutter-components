@@ -7,8 +7,6 @@ class SignUpMobileScreenLayout extends StatelessWidget {
   }) : super(key: key);
 
   final SignUpController controller;
-  final basicSettingsController = Get.put(BasicSettingsController());
-
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -172,13 +170,7 @@ class SignUpMobileScreenLayout extends StatelessWidget {
                         ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      Get.to(
-                        () => WebViewScreen(
-                          title: Strings.privacyPolicy,
-                          url: basicSettingsController
-                              .appSettingsModel.data.webLinks.privacyPolicy,
-                        ),
-                      );
+                  
                     },
                 )
               ],

@@ -7,6 +7,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../backend/model/auth/forgot_password_model.dart';
 import '../../../backend/model/auth/otp_verification_model.dart';
+import '../../../backend/services/api_services.dart';
 import '../../../backend/utils/api_method.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/basic_screen_imports.dart';
@@ -73,7 +74,7 @@ class OtpVerificationController extends GetxController {
       'otp': currentText.value,
       'token': userToken.value
     };
-    await AuthApiServices.forgetPassVerifyOTPApi(body: inputBody).then((value) {
+    await ApiServices().forgetPassVerifyOTPApi(body: inputBody).then((value) {
       _otpVerificationModel = value!;
 
       goToResetPasswordScreen(
@@ -111,8 +112,7 @@ class OtpVerificationController extends GetxController {
     Map<String, dynamic> inputBody = {
       'credentials': LocalStorage.getEmail(),
     };
-    await AuthApiServices.forgotPasswordProcessApi(body: inputBody)
-        .then((value) {
+    await ApiServices().forgotPasswordProcessApi(body: inputBody).then((value) {
       _forgotPasswordModel = value!;
       userToken.value = _forgotPasswordModel.data.user.token;
       _isForgotPasswordLoading.value = false;

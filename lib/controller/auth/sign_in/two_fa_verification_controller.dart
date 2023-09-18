@@ -3,6 +3,7 @@ import 'package:adChange/backend/model/common/common_success_model.dart';
 import 'package:adChange/backend/services/auth/auth_api_services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../backend/local_storage/local_storage.dart';
+import '../../../backend/services/api_services.dart';
 import '../../../backend/utils/api_method.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/basic_screen_imports.dart';
@@ -69,7 +70,7 @@ class TwoFaVerificationController extends GetxController {
     Map<String, dynamic> inputBody = {
       'otp': currentText.value,
     };
-    await AuthApiServices.twoFaVerifyOTPApi(body: inputBody).then((value) {
+    await  ApiServices().twoFaVerifyOTPApi(body: inputBody).then((value) {
       _twoFaOtpVerificationModel = value!;
       goToTwoFaOtpVerificationScreen();
       _isLoading.value = false;
