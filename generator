@@ -1,0 +1,16 @@
+{
+  "properties": {"key": "value"},
+  "children": [
+    {
+      "properties": {"data": "Hello, World!"},
+      "children": [
+        {
+          "properties": {},
+          "children": [{"properties": {"data": "Nested Text"}}]
+        }
+      ]
+    }
+  ],
+  "filePaths": ["lib/ui/generated_ui.dart", "lib/ui/another_file.dart"],
+  "folders": ["lib/ui", "assets/images"]
+}
