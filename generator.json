@@ -11,6 +11,6 @@
       ]
     }
   ],
-  "filePaths": ["lib/ui/generated_ui.dart", "lib/ui/another_file.dart"],
-  "folders": ["lib/ui", "assets/images"]
+  "filePaths": ["ui/generated_ui.dart", "ui/another_file.dart"],
+  "folders": ["ui", "assets/images",'controller','utils', 'widget' ]
 }
